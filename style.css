@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #000000 0%, #006e1c 100%);
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    backdrop-filter: blur(10px);
+    min-height: fit-content;
+    height: auto;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.display {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    min-height: 100px;
+    height: auto;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+    text-align: right;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 45px;
+    height: auto;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+input::placeholder {
+    color: #ccc;
+    opacity: 0.7;
+}
+
+input:empty::before {
+    content: attr(placeholder);
+    color: #ccc;
+    opacity: 0.7;
+}
+
+input.active-input {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    background-color: #f0f4ff;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Teclado numérico binário */
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.key {
+    padding: 15px 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: monospace;
+}
+
+.key:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.key:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o container do resultado */
+.result-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.result-label {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    min-width: 100px;
+}
+
+#resultado {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 1.2rem;
+    min-height: 50px;
+    height: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    overflow-x: auto;
+    word-break: break-all;
+}
+
+#resultado:empty::before {
+    content: attr(placeholder);
+    color: #ccc;
+    opacity: 0.7;
+}
+
+/* Estilo específico para botões de operação */
+button:nth-child(1) { 
+    background-color: #667eea; 
+    color: white;
+} /* Soma */
+button:nth-child(2) { 
+    background-color: #764ba2; 
+    color: white;
+} /* Subtração */
+button:nth-child(3) { 
+    background-color: #6c5ce7; 
+    color: white;
+} /* Multiplicação */
+button:nth-child(4) { 
+    background-color: #a55eea; 
+    color: white;
+} /* Divisão */
+
+button:nth-child(1):hover { background-color: #5a6fd6; }
+button:nth-child(2):hover { background-color: #6a439c; }
+button:nth-child(3):hover { background-color: #5f50d0; }
+button:nth-child(4):hover { background-color: #9453d3; }
+
+/* Botões numéricos e função */
+button:not(:nth-child(-n+4)) {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+button:not(:nth-child(-n+4)):hover {
+    background-color: #e9ecef;
+}
+
+/* Estilo para o botão de limpar */
+.clear-container {
+    margin-top: 5px;
+}
+
+.clear-btn.full-width {
+    width: 100%;
+    height: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clear-btn.full-width:hover {
+    background-color: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clear-btn.full-width:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    button, .key {
+        height: 45px;
+        font-size: 1rem;
+    }
+} 

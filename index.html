@@ -3,21 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Binária</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>Calculadora Binaria</title>
 </head>
 <body>
-    <h1>Calculadora Binaria</h1>
-    <input type="text" id="binario_0" placeholder="Digite o primeiro numero binario">
-    <br>
-    <input type="text" id="binario_1" placeholder="Digite o segundo numero binario">
-    <br>
-    <button onclick="somar()">Somar</button>
-    <button onclick="subtrair()">Subtrair</button>
-    <button onclick="multiplicar()">Multiplicar</button>
-    <button onclick="dividir()">Dividir</button>
-    <br>
-    <p id="resultado"></p>
+    <div class="container">
+        <h1>Calculadora Binária</h1>
+        
+        <div class="display">
+            <div class="input-group">
+                <label for="binario_0">Primeiro número binário:</label>
+                <input type="text" id="binario_0" readonly class="active-input" onclick="setActiveInput('binario_0')" placeholder="0">
+            </div>
+            
+            <div class="input-group">
+                <label for="binario_1">Segundo número binário:</label>
+                <input type="text" id="binario_1" readonly onclick="setActiveInput('binario_1')" placeholder="0">
+            </div>
+        </div>
+        
+        <div class="result-container">
+            <span class="result-label">Resultado:</span>
+            <div id="resultado" placeholder="0"></div>
+        </div>
+        
+        <!-- Teclado numérico binário único -->
+        <div class="keyboard">
+            <!-- Números com 1s em cima -->
+            <div class="key" onclick="appendToActiveInput('1')">1</div>
+            <div class="key" onclick="appendToActiveInput('11')">11</div>
+            <div class="key" onclick="appendToActiveInput('111')">111</div>
+            <div class="key" onclick="appendToActiveInput('1111')">1111</div>
+            
+            <!-- Números com 0s embaixo -->
+            <div class="key" onclick="appendToActiveInput('0')">0</div>
+            <div class="key" onclick="appendToActiveInput('00')">00</div>
+            <div class="key" onclick="appendToActiveInput('000')">000</div>
+            <div class="key" onclick="appendToActiveInput('0000')">0000</div>
+        </div>
+        
+        <div class="buttons">
+            <button onclick="somar()"> + </button>
+            <button onclick="subtrair()"> - </button>
+            <button onclick="multiplicar()"> × </button>
+            <button onclick="dividir()"> ÷  </button>
+        </div>
+        
+        <!-- Botão limpar abaixo das operações -->
+        <div class="clear-container">
+            <div class="key clear-btn full-width" onclick="clearActiveInput()">Limpar</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Variável para armazenar o ID do input ativo
+        let activeInputId = 'binario_0';
+        
+        // Função para definir qual input está ativo
+        function setActiveInput(inputId) {
+            // Remover classe active de todos os inputs
+            document.getElementById('binario_0').classList.remove('active-input');
+            document.getElementById('binario_1').classList.remove('active-input');
+            
+            // Adicionar classe active ao input selecionado
+            document.getElementById(inputId).classList.add('active-input');
+            
+            // Atualizar o input ativo
+            activeInputId = inputId;
+        }
+        
+        // Função para adicionar valor ao input ativo
+        function appendToActiveInput(value) {
+            const input = document.getElementById(activeInputId);
+            input.value += value;
+        }
+        
+        // Função para limpar o input ativo
+        function clearActiveInput() {
+            // Limpar ambos os campos de entrada
+            document.getElementById("binario_0").value = '';
+            document.getElementById("binario_1").value = '';
+            // Limpar o resultado
+            document.getElementById("resultado").textContent = '';
+        }
+    </script>
 </body>
 </html>

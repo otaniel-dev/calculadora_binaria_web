@@ -78,7 +78,7 @@ function somar() {
     const resultadoString = resultado.join('');
     
     // Exibir o resultado
-    document.getElementById("resultado").textContent = "Resultado: " + resultadoString;
+    document.getElementById("resultado").textContent = resultadoString;
 }
 
 // Função para subtrair dois números binários
